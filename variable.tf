@@ -54,3 +54,21 @@ variable "image_id" {
     type = string
     default = "ami-0b6c6ebed2801a5cb"
 }
+
+variable "desired_capacity" {
+  description = "Capacity for EC2 Instances in ASG"
+  type = number
+  default = 2
+}
+
+variable "min_size" {
+  description = "Minimum size for EC2 Instances in ASG"
+  type = number
+  default = 1
+}
+
+variable "max_size" {
+  description = "Maximum size for EC2 Instances in ASG"
+  type = number
+  default = 4
+}

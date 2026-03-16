@@ -45,6 +45,15 @@ resource "aws_vpc_security_group_ingress_rule" "app-inbound" {
 
 }
 
+resource "aws_vpc_security_group_ingress_rule" "app-inbound-22" {
+    security_group_id = aws_security_group.app-sg.id
+    ip_protocol = "tcp"
+    from_port = 22
+    to_port = 22
+    cidr_ipv4 = "0.0.0.0/0"
+
+}
+
 resource "aws_vpc_security_group_egress_rule" "app-outbound" {
     security_group_id = aws_security_group.app-sg.id
     cidr_ipv4 = "0.0.0.0/0"
