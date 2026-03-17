@@ -1,20 +1,24 @@
 variable "region" {
     description = "The AWS region to deploy resources in"
+    type = string
     default     = "us-east-1"
 }
 
 variable "environment" {
     description = "The environment to deploy resources in"
+    type = string
     default     = "dev"
 }
 
 variable "vpc_cidr" {
     description = "value for vpc cidr block"
+    type = string
     default     = "10.0.0.0/16"
 }
 
 variable "public_subnet_count" {
     description = "number of public subnets to create"
+    type = number
     default     = 2  
 }
 

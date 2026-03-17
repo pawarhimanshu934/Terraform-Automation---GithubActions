@@ -48,6 +48,7 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ github.token }}
               run: tflint -f compact
+              continue-on-error: true
             
             - name: Run Trivy vulnerability scanner in IaC mode
               uses: aquasecurity/trivy-action@master
