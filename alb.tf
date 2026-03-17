@@ -6,13 +6,13 @@ resource "aws_lb" "my_alb" {
   subnets            = aws_subnet.public_subnet[*].id
 
   enable_deletion_protection = false
-  idle_timeout = 60
+  idle_timeout               = 60
 
   tags = {
     Name        = "my-alb-${var.environment}"
     Environment = var.environment
   }
-  
+
 }
 
 resource "aws_lb_target_group" "my_alb_target_group" {
@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "my_alb_target_group" {
     path                = "/"
     interval            = 30
     timeout             = 5
-    healthy_threshold  = 2
+    healthy_threshold   = 2
     unhealthy_threshold = 2
   }
 
@@ -41,7 +41,7 @@ resource "aws_lb_listener" "my_alb_listener" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.my_alb_target_group.arn
   }
 }
