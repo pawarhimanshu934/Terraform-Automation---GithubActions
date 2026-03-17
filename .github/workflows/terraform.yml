@@ -1,6 +1,5 @@
 name: "Terraform Multi-Environment Workflow"
 on:
-    workflow_dispatch:
     push:
         branches:
             - main
@@ -96,9 +95,7 @@ jobs:
 
             - name: Create tfvars file
               run : |
-                cat << 'EOF' > $TF_VAR_FILE
-                ${{ secrets.TFVARS }}
-                EOF
+                echo "${{ secrets.TFVARS }}" > $TF_VAR_FILE
 
             - name: Debug tfvars
               run: cat $TF_VAR_FILE
