@@ -62,7 +62,7 @@ variable "image_id" {
 variable "desired_capacity" {
   description = "Desired capacity of ASG"
   type        = number
-  default     = 3
+  default     = 2
 }
 
 variable "max_size" {
