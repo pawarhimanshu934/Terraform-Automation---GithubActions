@@ -24,7 +24,7 @@ aws s3api put-public-access-block \
   BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true
 
 
-# # Create an S3 bucket with the specified name and tags
+# # Create an S3 bucket with the specified name and tagss
 # resource "aws_s3_bucket" "my_bucket" {
 #   bucket = var.bucket_name
 
