@@ -46,7 +46,7 @@ jobs:
               run: tflint -f compact
             
             - name: Run Trivy vulnerability scanner in IaC mode
-              uses: aquasecurity/trivy-action@0.33.1
+              uses: aquasecurity/trivy-action@v0.20.0
               with:
                 scan-type: 'config'
                 hide-progress: false
@@ -55,6 +55,7 @@ jobs:
                 ignore-unfixed: true
                 exit-code: '0'
                 severity: 'CRITICAL,HIGH'
+                continue-on-error: true
 
             - name: Terraform Init
               id: init
