@@ -13,7 +13,7 @@ jobs:
     terraform-plan:
         name: "Terraform Plan"
         runs-on: ubuntu-latest
-        environment: ${{ github.event_name == 'pull_request' && 'prod' || 'dev' }}
+        environment: ${{ github.event_name == 'pull_request' && github.base_ref || github.ref_name }}
         outputs:
             tf_workspace: ${{ steps.env-vars.outputs.tf_workspace }}
         defaults:
@@ -95,11 +95,11 @@ jobs:
 
             - name: Create tfvars file
               run : |
-                echo "{ secrets.TFVARS }}" > $TF_VAR_FILE
+                echo "${{ secrets.TFVARS }}" > $TF_VAR_FILE
 
             - name: Workspace Select
               run : |
-                terraform workspace select $tf_workspace || terraform workspace new $tf_workspace
+                terraform workspace select $WORKSPACE_NAME || terraform workspace new $WORKSPACE_NAME
 
             - name: Terraform Plan
               id : plan
@@ -157,7 +157,7 @@ jobs:
     terraform-apply:
        name: "Terraform Apply"
        needs: terraform-plan
-       if: github_event_name == 'push'
+       if: github.event_name == 'push'
        runs-on: ubuntu-latest
        environment: ${{ needs.terraform-plan.outputs.tf_workspace }}
        defaults:
@@ -179,7 +179,7 @@ jobs:
           - name: "Set Environment Variable"
             id: env-vars
             run: |
-              $BRANCH_NAME="${{github.ref_name}}"
+              BRANCH_NAME="${{github.ref_name}}"
               if [[ $BRANCH_NAME == "main" ]]; then
                 echo "WORKSPACE_NAME=prod" >> $GITHUB_ENV
                 echo "TF_VAR_FILE=prod.tfvars" >> $GITHUB_ENV
