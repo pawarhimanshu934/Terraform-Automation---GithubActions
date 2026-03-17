@@ -95,7 +95,10 @@ jobs:
 
             - name: Create tfvars file
               run : |
-                printf "%s" "${{ secrets.TFVARS }}" > $TF_VAR_FILE
+                echo "${{ secrets.TFVARS }}" > $TF_VAR_FILE
+
+            - name: Debug tfvars
+              run: cat $TF_VAR_FILE
 
             - name: Workspace Select
               run : |
