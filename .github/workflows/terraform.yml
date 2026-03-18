@@ -58,7 +58,7 @@ jobs:
                 format: 'table'
                 ignore-unfixed: true
                 exit-code: '0'
-                severity: 'CRITICAL,HIGH'clea
+                severity: 'CRITICAL,HIGH'
 
             - name: Terraform Init
               id: init
