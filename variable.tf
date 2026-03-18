@@ -28,18 +28,6 @@ variable "private_subnet_count" {
   default     = 2
 }
 
-variable "public_subnet_cidr" {
-  description = "List of CIDR block for public subnet"
-  type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
-}
-
-variable "private_subnet_cidr" {
-  description = "List of CIDR block for priavte subnet"
-  type        = list(string)
-  default     = ["10.0.3.0/24", "10.0.4.0/24"]
-}
-
 variable "availability_zone" {
   description = "availability zone for subnets"
   type        = list(string)
