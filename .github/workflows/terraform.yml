@@ -93,13 +93,6 @@ jobs:
                   echo "TF_VAR_FILE=dev.tfvars" >> $GITHUB_ENV
                 fi
 
-            - name: Create tfvars file
-              run : |
-                echo "${{ secrets.TFVARS }}" > $TF_VAR_FILE
-
-            - name: Debug tfvars
-              run: cat $TF_VAR_FILE
-
             - name: Workspace Select
               run : |
                 terraform workspace select $WORKSPACE_NAME || terraform workspace new $WORKSPACE_NAME
@@ -190,10 +183,6 @@ jobs:
                 echo "WORKSPACE_NAME=dev" >> $GITHUB_ENV
                 echo "TF_VAR_FILE=dev.tfvars" >> $GITHUB_ENV
               fi
-
-          - name: Create tfvars file
-            run: | 
-              echo "{ secrets.TFVARS }}" > $TF_VAR_FILE
 
           - name: Select Terraform Workspace
             run: |
