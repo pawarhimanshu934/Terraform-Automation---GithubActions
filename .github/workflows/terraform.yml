@@ -55,12 +55,10 @@ jobs:
               with:
                 scan-type: 'config'
                 hide-progress: false
-                format: 'sarif'
-                output: 'trivy-results.sarif'
+                format: 'table'
                 ignore-unfixed: true
                 exit-code: '0'
-                severity: 'CRITICAL,HIGH'
-                continue-on-error: true
+                severity: 'CRITICAL,HIGH'clea
 
             - name: Terraform Init
               id: init
