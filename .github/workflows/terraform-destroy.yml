@@ -52,7 +52,7 @@ jobs:
             - name: Set Environment Variables
               id: env-vars
               run: |
-                ENV_NAME = "${{ github.event.inputs.environment }}"
+                ENV_NAME="${{ github.event.inputs.environment }}"
                 if [ "$ENV_NAME" == "prod" ]; then
                     echo "WORKSPACE_NAME=prod" >> $GITHUB_ENV
                     echo "TF_VAR_FILE=prod.tfvars" >> $GITHUB_ENV
